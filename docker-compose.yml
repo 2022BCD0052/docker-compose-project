@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: 2022BCD0052_web
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/mydatabase
+
+  db:
+    image: postgres:15
+    container_name: 2022BCD0052_db
+    restart: always
+    environment:
+      POSTGRES_USER: yogesh
+      POSTGRES_PASSWORD: yogesh1090@
+      POSTGRES_DB: docker
+    ports:
+      - "5432:5432"
